@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enterprise IT & Corporate Facilities Portal</title>
+  <meta name="description" content="AI-Powered Enterprise IT & Corporate Facilities Service Portal with multi-role authentication, ticket management, SLA monitoring, and NLP-based auto-triage.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER & NAVBAR ==================== -->
+  <header id="main-header" style="display: none;">
+    <div class="navbar">
+      <div class="logo-group">
+        <div class="logo-icon"><i class="fa-solid fa-building-user"></i></div>
+        <div>
+          <div class="logo-title">Enterprise Service Portal</div>
+          <div class="logo-sub" id="nav-portal-subtitle">AI-Powered IT & Facilities Operations</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <div class="search-bar-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" placeholder="Search tickets, SLAs..." onkeyup="handleGlobalSearch(this.value)">
+        </div>
+
+        <button class="btn btn-secondary" style="padding: 8px 12px; position: relative;" onclick="toggleNotificationsModal(true)">
+          <i class="fa-solid fa-bell"></i>
+          <span id="notif-badge-count" style="position: absolute; top: -3px; right: -3px; background: var(--accent-rose); color: white; border-radius: 50%; width: 16px; height: 16px; font-size: 0.65rem; display: flex; align-items: center; justify-content: center; font-weight: 800;">3</span>
+        </button>
+
+        <button class="theme-toggle" id="theme-toggle-btn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
+
+        <button class="btn btn-secondary" style="padding: 8px 12px;" onclick="toggleSettingsModal(true)">
+          <i class="fa-solid fa-gear"></i> Settings
+        </button>
+
+        <div class="user-profile">
+          <div class="avatar" id="user-avatar">US<div class="avatar-status-dot"></div></div>
+          <div>
+            <div style="font-size: 0.85rem; font-weight: 700; color: var(--text-heading);" id="user-name">User Account</div>
+            <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 600;" id="user-role-label">Employee</div>
+          </div>
+          <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.8rem; margin-left: 6px;" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- NAVIGATION TABS BAR -->
+    <div class="nav-tabs-bar" id="nav-tabs-bar">
+      <button class="nav-tab active" data-tab="service-desk" onclick="switchTab('service-desk')">
+        <i class="fa-solid fa-headset"></i> Service Desk
+      </button>
+      <button class="nav-tab" data-tab="knowledge-base" onclick="switchTab('knowledge-base')">
+        <i class="fa-solid fa-book-open"></i> Knowledge Base
+      </button>
+      <button class="nav-tab" data-tab="asset-registry" onclick="switchTab('asset-registry')">
+        <i class="fa-solid fa-laptop-code"></i> Asset Registry
+      </button>
+      <button class="nav-tab" data-tab="incidents" onclick="switchTab('incidents')">
+        <i class="fa-solid fa-triangle-exclamation"></i> Major Incidents
+      </button>
+      <button class="nav-tab" data-tab="analytics" onclick="switchTab('analytics')">
+        <i class="fa-solid fa-chart-line"></i> Analytics
+      </button>
+      <button class="nav-tab" data-tab="changes" onclick="switchTab('changes')">
+        <i class="fa-solid fa-code-branch"></i> Change Mgmt
+      </button>
+      <button class="nav-tab" data-tab="audit" onclick="switchTab('audit')">
+        <i class="fa-solid fa-shield-halved"></i> Audit Log
+      </button>
+      <button class="nav-tab" data-tab="floormap" onclick="switchTab('floormap')">
+        <i class="fa-solid fa-map-location-dot"></i> Floor Map
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== NOTIFICATION CENTER MODAL ==================== -->
+  <div id="modal-notifications" class="modal-overlay" style="display: none;">
+    <div class="glass-panel modal-card-box" style="max-width: 560px; width: 100%; padding: 1.5rem; max-height: 85vh; display: flex; flex-direction: column;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; flex-shrink: 0;">
+        <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--text-heading);">
+          <i class="fa-solid fa-bell" style="color: var(--primary-blue);"></i> Active System Notifications
+        </h3>
+        <button onclick="toggleNotificationsModal(false)" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="custom-scroll-container" style="flex: 1; overflow-y: auto; padding-right: 8px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 10px;" id="notif-list-container"></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border-color); padding-top: 12px; flex-shrink: 0;">
+        <button type="button" class="btn btn-secondary" onclick="markNotificationsRead()"><i class="fa-solid fa-check-double"></i> Mark All as Read</button>
+        <button type="button" class="btn btn-secondary" onclick="toggleNotificationsModal(false)">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== SETTINGS MODAL ==================== -->
+  <div id="modal-settings" class="modal-overlay" style="display: none;">
+    <div class="glass-panel modal-card-box" style="max-width: 500px; width: 100%; padding: 1.75rem; max-height: 85vh; display: flex; flex-direction: column;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem; flex-shrink: 0;">
+        <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--text-heading);">
+          <i class="fa-solid fa-sliders" style="color: var(--primary-blue);"></i> Security & Emergency Settings
+        </h3>
+        <button onclick="toggleSettingsModal(false)" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <form onsubmit="saveUserSettings(event)" style="flex: 1; overflow-y: auto; padding-right: 6px; display: flex; flex-direction: column;">
+        <!-- Emergency SOS Hotline Contact -->
+        <div style="background: var(--accent-rose-subtle); border: 1px solid var(--accent-rose-border); padding: 1rem 1.15rem; border-radius: var(--radius-md); margin-bottom: 1.25rem;">
+          <div style="font-weight: 800; font-size: 0.92rem; color: var(--accent-rose); display: flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-phone-volume"></i> Emergency SOS Hotline Contact
+          </div>
+          <p style="font-size: 0.78rem; color: var(--text-body); margin: 4px 0 10px;">Registered phone contact for automated P1 Critical incident voice calls & facility safety alerts.</p>
+          <div style="display: flex; gap: 8px;">
+            <input type="tel" id="setting-sos-phone" class="form-input" value="9944467393" style="flex: 1;">
+            <button type="button" class="btn btn-danger" onclick="triggerSosCallAlert()"><i class="fa-solid fa-phone"></i> Trigger SOS Call</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Primary Account Email</label>
+          <input type="email" id="setting-email" class="form-input" value="samantrose7@gmail.com" readonly style="background: var(--bg-subtle);">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">2FA Authentication Protocol</label>
+          <select id="setting-2fa-pref" class="form-select">
+            <option value="EMAIL">Email 2FA OTP Verification (Gmail Mobile App)</option>
+            <option value="SOS_CALL">Emergency Voice Telephony Dispatch (+91 9944467393)</option>
+          </select>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 10px; margin-top: auto; padding-top: 1rem;">
+          <button type="button" class="btn btn-secondary" onclick="toggleSettingsModal(false)">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Settings</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== IN-TICKET CHAT MODAL ==================== -->
+  <div id="modal-chat" class="modal-overlay" style="display: none;">
+    <div class="glass-panel modal-card-box" style="max-width: 580px; width: 100%; padding: 0; overflow: hidden; max-height: 85vh; display: flex; flex-direction: column;">
+      <div style="padding: 1.25rem 1.5rem; border-bottom: 1px solid var(--border-color); display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-heading);">
+          <i class="fa-solid fa-comments" style="color: var(--primary-blue);"></i> Ticket Discussion Thread
+        </h3>
+        <button onclick="closeChatModal()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="chat-container custom-scroll-container" id="chat-messages-container" style="flex: 1; overflow-y: auto;">
+        <!-- Chat messages rendered here -->
+      </div>
+      <div class="chat-input-bar" style="flex-shrink: 0;">
+        <input type="text" id="chat-input" class="form-input" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendChatMessage()" style="border-radius: var(--radius-md) 0 0 var(--radius-md); border-right: none;">
+        <button class="btn btn-primary" onclick="sendChatMessage()" style="border-radius: 0 var(--radius-md) var(--radius-md) 0; padding: 10px 18px;">
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CSAT SURVEY MODAL ==================== -->
+  <div id="modal-csat" class="modal-overlay" style="display: none;">
+    <div class="glass-panel modal-card-box" style="max-width: 440px; width: 100%; padding: 2rem; text-align: center; max-height: 85vh; overflow-y: auto;">
+      <div style="width: 56px; height: 56px; background: var(--accent-emerald-subtle); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--accent-emerald); font-size: 1.5rem; margin-bottom: 14px;">
+        <i class="fa-solid fa-face-smile"></i>
+      </div>
+      <h3 style="font-size: 1.15rem; font-weight: 800; color: var(--text-heading); margin-bottom: 6px;">Rate Your Experience</h3>
+      <p style="font-size: 0.84rem; color: var(--text-muted); margin-bottom: 1.25rem;">How satisfied are you with the resolution of this ticket?</p>
+      <div class="star-rating" id="csat-stars">
+        <span class="star" data-rating="1" onclick="setCsatRating(1)"><i class="fa-solid fa-star"></i></span>
+        <span class="star" data-rating="2" onclick="setCsatRating(2)"><i class="fa-solid fa-star"></i></span>
+        <span class="star" data-rating="3" onclick="setCsatRating(3)"><i class="fa-solid fa-star"></i></span>
+        <span class="star" data-rating="4" onclick="setCsatRating(4)"><i class="fa-solid fa-star"></i></span>
+        <span class="star" data-rating="5" onclick="setCsatRating(5)"><i class="fa-solid fa-star"></i></span>
+      </div>
+      <textarea id="csat-feedback" class="form-textarea" placeholder="Optional: Tell us more about your experience..." style="min-height: 70px; margin-top: 1rem;"></textarea>
+      <div style="display: flex; gap: 10px; margin-top: 1.25rem; justify-content: center;">
+        <button class="btn btn-secondary" onclick="closeCsatModal()">Skip</button>
+        <button class="btn btn-primary" onclick="submitCsatRating()"><i class="fa-solid fa-check"></i> Submit Feedback</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== KB ARTICLE DETAIL MODAL ==================== -->
+  <div id="modal-kb-detail" class="modal-overlay" style="display: none;">
+    <div class="glass-panel modal-card-box" style="max-width: 680px; width: 100%; padding: 1.75rem; max-height: 85vh; display: flex; flex-direction: column;">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; flex-shrink: 0;">
+        <h3 style="font-size: 1.2rem; font-weight: 800; color: var(--text-heading);" id="kb-detail-title">
+          <i class="fa-solid fa-book-open" style="color: var(--primary-blue);"></i> Article Title
+        </h3>
+        <button onclick="closeKbDetailModal()" style="background: none; border: none; font-size: 1.2rem; cursor: pointer; color: var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div id="kb-detail-body" class="kb-detail-content custom-scroll-container" style="flex: 1; overflow-y: auto; padding-right: 8px;"></div>
+      <div style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;">
+        <div id="kb-detail-tags" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+        <button class="btn btn-secondary" onclick="closeKbDetailModal()">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== MAIN CONTENT AREA ==================== -->
+  <main>
+
+    <!-- LOGIN SCREEN -->
+    <div id="view-login" class="fade-in login-card-container">
+      <div class="glass-panel" style="padding: 2.5rem;">
+        <div style="text-align: center; margin-bottom: 1.75rem;">
+          <div class="logo-icon" style="margin: 0 auto 12px; width: 52px; height: 52px; font-size: 1.4rem;">
+            <i class="fa-solid fa-building-user"></i>
+          </div>
+          <h2 style="font-size: 1.4rem; font-weight: 800; color: var(--text-heading);">Portal Account Login</h2>
+          <p style="font-size: 0.84rem; color: var(--text-muted); margin-top: 4px;">Sign in with your Email Address or User ID</p>
+        </div>
+
+        <div id="login-alert-box" style="display: none; padding: 10px 14px; border-radius: var(--radius-md); font-size: 0.82rem; font-weight: 600; margin-bottom: 1.25rem;"></div>
+
+        <form id="form-login" autocomplete="off" onsubmit="handleManualLogin(event)">
+          <div class="form-group">
+            <label class="form-label">Email Address / User ID</label>
+            <div style="position: relative;">
+              <i class="fa-solid fa-envelope" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+              <input type="text" id="login-email" class="form-input" style="padding-left: 38px;" placeholder="Type your email address..." required autocomplete="off">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Password</label>
+            <div style="position: relative;">
+              <i class="fa-solid fa-lock" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+              <input type="password" id="login-password" class="form-input" style="padding-left: 38px;" placeholder="Type your password..." required autocomplete="off">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 0.9rem; margin-top: 6px;">
+            <i class="fa-solid fa-shield-halved"></i> Request 2FA OTP Code
+          </button>
+        </form>
+
+        <div style="margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 12px;">
+          <div style="font-size: 0.75rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; text-align: center; margin-bottom: 8px;">
+            ⚡ Test 2FA Accounts (Target Inbox: samantrose07@gmail.com)
+          </div>
+          <div class="demo-role-pills" style="flex-wrap: wrap;">
+            <div class="demo-pill" onclick="quickFillLogin('samantrose07@gmail.com')">💻 Hardware Tech</div>
+            <div class="demo-pill" onclick="quickFillLogin('tech_software')">⚙️ Software Tech</div>
+            <div class="demo-pill" onclick="quickFillLogin('samantrose94@gmail.com')">👤 Employee</div>
+            <div class="demo-pill" onclick="quickFillLogin('samantrose7@gmail.com')">👑 Admin</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2FA OTP SCREEN -->
+    <div id="view-otp-screen" class="fade-in login-card-container" style="display: none;">
+      <div class="glass-panel" style="padding: 2.25rem;">
+        <div style="text-align: center; margin-bottom: 1.25rem;">
+          <div style="width: 52px; height: 52px; background: var(--primary-blue-subtle); border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; color: var(--primary-blue); font-size: 1.4rem; margin-bottom: 10px;">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <h2 style="font-size: 1.3rem; font-weight: 800; color: var(--text-heading);">Two-Factor Authentication</h2>
+          <p style="font-size: 0.83rem; color: var(--text-muted); margin-top: 4px;">
+            Application: <b>Enterprise IT & Corporate Facilities Portal</b>
+          </p>
+          <div style="background: var(--accent-emerald-subtle); color: var(--accent-emerald); border: 1px solid var(--accent-emerald-border); padding: 12px; border-radius: var(--radius-md); margin-top: 12px; font-size: 0.85rem;" id="screen-otp-demo-code">
+            <i class="fa-solid fa-envelope"></i> 2FA OTP Code sent to your email!
+          </div>
+        </div>
+
+        <form onsubmit="handleOtpSubmit(event)">
+          <div class="otp-input-group">
+            <input type="text" id="otp1" maxlength="1" class="otp-box" placeholder="-" onkeyup="moveOtpFocus(this, 1)" autofocus required>
+            <input type="text" id="otp2" maxlength="1" class="otp-box" placeholder="-" onkeyup="moveOtpFocus(this, 2)" required>
+            <input type="text" id="otp3" maxlength="1" class="otp-box" placeholder="-" onkeyup="moveOtpFocus(this, 3)" required>
+            <input type="text" id="otp4" maxlength="1" class="otp-box" placeholder="-" onkeyup="moveOtpFocus(this, 4)" required>
+            <input type="text" id="otp5" maxlength="1" class="otp-box" placeholder="-" onkeyup="moveOtpFocus(this, 5)" required>
+            <input type="text" id="otp6" maxlength="1" class="otp-box" placeholder="-" onkeyup="moveOtpFocus(this, 6)" required>
+          </div>
+          <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 0.9rem;">
+            <i class="fa-solid fa-shield-check"></i> Verify OTP & Complete Login
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==================== EMPLOYEE SERVICE DESK VIEW ==================== -->
+    <div id="view-employee" class="fade-in" style="display: none;">
+      <div class="catalog-grid">
+        <div class="catalog-card" onclick="prefillCategory('Hardware / Laptop')">
+          <div class="catalog-icon hw"><i class="fa-solid fa-laptop"></i></div>
+          <div>
+            <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-heading);">Hardware & Devices</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Laptop, Display, Keyboard</div>
+          </div>
+        </div>
+        <div class="catalog-card" onclick="prefillCategory('Software / Access')">
+          <div class="catalog-icon sw"><i class="fa-solid fa-code"></i></div>
+          <div>
+            <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-heading);">Software & Access</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Licenses, CRM, Permissions</div>
+          </div>
+        </div>
+        <div class="catalog-card" onclick="prefillCategory('Facilities / HVAC')">
+          <div class="catalog-icon fac"><i class="fa-solid fa-temperature-arrow-down"></i></div>
+          <div>
+            <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-heading);">Facilities & HVAC</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Cooling, Leaks, Power</div>
+          </div>
+        </div>
+        <div class="catalog-card" onclick="prefillCategory('Network / Connectivity')">
+          <div class="catalog-icon net"><i class="fa-solid fa-wifi"></i></div>
+          <div>
+            <div style="font-weight: 700; font-size: 0.88rem; color: var(--text-heading);">Network & VPN</div>
+            <div style="font-size: 0.75rem; color: var(--text-muted);">Wi-Fi, Router, GlobalProtect</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Action Shortcuts -->
+      <div style="display: flex; gap: 10px; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <button class="btn btn-secondary" style="font-size: 0.8rem;" onclick="quickSubmitTicket('Password Reset', 'Software / Access', 'Please reset my Active Directory password.', 'P3_MEDIUM')">
+          <i class="fa-solid fa-key"></i> Password Reset
+        </button>
+        <button class="btn btn-secondary" style="font-size: 0.8rem;" onclick="quickSubmitTicket('VPN Access Request', 'Software / Access', 'Need GlobalProtect VPN access for remote work.', 'P3_MEDIUM')">
+          <i class="fa-solid fa-lock"></i> VPN Access
+        </button>
+        <button class="btn btn-secondary" style="font-size: 0.8rem;" onclick="quickSubmitTicket('New Software Installation', 'Software / Access', 'Requesting installation of licensed software.', 'P3_MEDIUM')">
+          <i class="fa-solid fa-download"></i> New Software
+        </button>
+        <button class="btn btn-secondary" style="font-size: 0.8rem;" onclick="quickSubmitTicket('Hardware Replacement', 'Hardware / Laptop', 'Device is malfunctioning and needs replacement.', 'P2_HIGH')">
+          <i class="fa-solid fa-arrows-rotate"></i> Hardware Replace
+        </button>
+      </div>
+
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Submit Service Request</h1>
+          <p class="section-desc">Type your issue in plain English. The AI microservice automatically classifies category, urgency, and optimal vendor.</p>
+        </div>
+      </div>
+
+      <div class="grid-2col">
+        <!-- Ticket Form -->
+        <div class="glass-panel" style="padding: 1.75rem;">
+          <form id="form-create-ticket" onsubmit="handleTicketSubmit(event)">
+            <div class="form-group">
+              <label class="form-label">Issue Title</label>
+              <input type="text" id="input-title" class="form-input" placeholder="e.g. Workstation screen flickering or Server room cooling leak" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Location / Desk / Office</label>
+              <input type="text" id="input-location" class="form-input" placeholder="e.g. Building B, Floor 3, Desk 304" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Link to Asset (Optional)</label>
+              <select id="input-asset-link" class="form-select">
+                <option value="">-- No Asset Linked --</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Detailed Description (Natural Language Text)</label>
+              <textarea id="input-desc" class="form-textarea" placeholder="Describe what happened, error messages, or physical observations..." required oninput="handleLiveAiAnalysis()"></textarea>
+            </div>
+
+            <!-- Self-Service Deflection Box -->
+            <div class="deflection-box" id="deflection-box" style="display: none;">
+              <div style="font-weight: 800; font-size: 0.85rem; color: var(--accent-emerald); margin-bottom: 8px;">
+                <i class="fa-solid fa-lightbulb"></i> Try These Solutions First
+              </div>
+              <div id="deflection-suggestions"></div>
+            </div>
+
+            <!-- Live AI NLP Analysis Preview -->
+            <div class="ai-preview-box">
+              <span class="ai-badge"><i class="fa-solid fa-microchip"></i> Live Hugging Face NLP AI</span>
+              <div style="font-size: 0.82rem; font-weight: 700; color: var(--primary-blue);">AI Microservice Live Inference Engine:</div>
+              <div class="ai-meta-grid">
+                <div class="ai-meta-item">
+                  <div class="ai-meta-label">Category (DistilBERT)</div>
+                  <div class="ai-meta-val" id="ai-category" style="color: var(--primary-blue);">-- Type Description --</div>
+                </div>
+                <div class="ai-meta-item">
+                  <div class="ai-meta-label">Sentiment & Urgency (RoBERTa)</div>
+                  <div class="ai-meta-val" id="ai-priority" style="color: var(--accent-amber);">-- Neutral --</div>
+                </div>
+                <div class="ai-meta-item">
+                  <div class="ai-meta-label">Auto-Routed Team</div>
+                  <div class="ai-meta-val" id="ai-vendor" style="color: var(--accent-emerald);">-- Auto Match --</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+              <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">
+                <i class="fa-solid fa-paper-plane"></i> Submit Ticket with AI Triage
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <!-- My Requests List -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2 style="font-size: 1.15rem; font-weight: 800; color: var(--text-heading);">My Active Requests</h2>
+            <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);" id="my-ticket-count">Total: 0 Tickets</span>
+          </div>
+          <div id="my-tickets-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TECHNICIAN WORK QUEUE VIEW ==================== -->
+    <div id="view-tech" class="fade-in" style="display: none;">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Technician & Specialist Work Queue</h1>
+          <p class="section-desc">Assigned incidents and live Service Level Agreement (SLA) countdown timers.</p>
+        </div>
+      </div>
+      <div id="tech-queue-container" class="grid-2col"></div>
+    </div>
+
+    <!-- ==================== ADMIN EXECUTIVE DASHBOARD VIEW ==================== -->
+    <div id="view-admin" class="fade-in" style="display: none;">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Executive Master Analytics Dashboard</h1>
+          <p class="section-desc">Real-time enterprise metrics, AI classification health, vendor performance, and security audit overview.</p>
+        </div>
+      </div>
+
+      <div class="grid-4col" style="margin-bottom: 1.75rem;" id="admin-kpi-cards">
+        <!-- KPI cards rendered dynamically -->
+      </div>
+
+      <div class="grid-2col">
+        <!-- AI Category Table -->
+        <div class="glass-panel" style="padding: 1.5rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-heading); margin-bottom: 1rem;">AI Classification by Domain Category</h3>
+          <table style="width: 100%; border-collapse: collapse; font-size: 0.84rem; color: var(--text-body);">
+            <thead>
+              <tr style="border-bottom: 1px solid var(--border-color); text-align: left; color: var(--text-muted);">
+                <th style="padding: 10px 8px;">Category</th>
+                <th style="padding: 10px 8px;">Model Used</th>
+                <th style="padding: 10px 8px;">Volume</th>
+                <th style="padding: 10px 8px;">Accuracy</th>
+              </tr>
+            </thead>
+            <tbody id="admin-ai-table-body">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Vendor Leaderboard -->
+        <div class="glass-panel" style="padding: 1.5rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-heading); margin-bottom: 1rem;">Specialist Teams & Vendor SLA Compliance</h3>
+          <div id="admin-vendor-list" style="display: flex; flex-direction: column; gap: 12px;"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== KNOWLEDGE BASE VIEW ==================== -->
+    <div id="view-kb" class="fade-in" style="display: none;">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Knowledge Base & Self-Service Library</h1>
+          <p class="section-desc">Search articles to resolve issues without submitting a ticket. Powered by smart deflection AI.</p>
+        </div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 0.82rem; font-weight: 700; color: var(--accent-emerald);"><i class="fa-solid fa-arrow-down"></i> Deflection Rate: <span id="kb-deflection-rate">0%</span></span>
+        </div>
+      </div>
+      <div class="kb-search-wrap" style="margin-bottom: 1.5rem;">
+        <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--text-muted);"></i>
+        <input type="text" id="kb-search-input" class="form-input" style="padding-left: 40px; max-width: 480px;" placeholder="Search knowledge base articles..." oninput="searchKbArticles(this.value)">
+      </div>
+      <div style="display: flex; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap;" id="kb-filter-pills">
+        <button class="btn btn-secondary" style="font-size: 0.78rem; padding: 5px 12px;" onclick="filterKbByDomain('ALL')">All</button>
+        <button class="btn btn-secondary" style="font-size: 0.78rem; padding: 5px 12px;" onclick="filterKbByDomain('HARDWARE')">💻 Hardware</button>
+        <button class="btn btn-secondary" style="font-size: 0.78rem; padding: 5px 12px;" onclick="filterKbByDomain('SOFTWARE')">⚙️ Software</button>
+        <button class="btn btn-secondary" style="font-size: 0.78rem; padding: 5px 12px;" onclick="filterKbByDomain('FACILITIES')">🏢 Facilities</button>
+        <button class="btn btn-secondary" style="font-size: 0.78rem; padding: 5px 12px;" onclick="filterKbByDomain('NETWORK')">📡 Network</button>
+      </div>
+      <div class="grid-3col" id="kb-articles-grid">
+        <!-- KB article cards rendered here -->
+      </div>
+    </div>
+
+    <!-- ==================== IT ASSET MANAGEMENT VIEW ==================== -->
+    <div id="view-itam" class="fade-in" style="display: none;">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">IT Asset Management Registry</h1>
+          <p class="section-desc">Enterprise device inventory, lifecycle tracking, and warranty management.</p>
+        </div>
+      </div>
+      <div class="grid-4col" style="margin-bottom: 1.5rem;" id="itam-summary-cards">
+        <!-- Asset summary cards -->
+      </div>
+      <div class="grid-3col" id="itam-assets-grid">
+        <!-- Asset cards rendered here -->
+      </div>
+    </div>
+
+    <!-- ==================== MAJOR INCIDENTS VIEW ==================== -->
+    <div id="view-incidents" class="fade-in" style="display: none;">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Major Incident War Room</h1>
+          <p class="section-desc">Active outages, coordinated P1 response, and batch ticket resolution.</p>
+        </div>
+      </div>
+      <div id="incidents-container">
+        <!-- Incident cards rendered here -->
+      </div>
+    </div>
+
+    <!-- ==================== SLA ANALYTICS VIEW ==================== -->
+    <div id="view-analytics" class="fade-in" style="display: none;">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">SLA Analytics & Executive Reporting</h1>
+          <p class="section-desc">Visual charts, MTTR tracking, vendor compliance scores, and weekly trends.</p>
+        </div>
+      </div>
+      <div class="grid-4col" style="margin-bottom: 1.75rem;" id="analytics-kpi-row">
+        <!-- Analytics KPI cards -->
+      </div>
+      <div class="grid-2col" style="margin-bottom: 1.75rem;">
+        <div class="glass-panel" style="padding: 1.5rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-heading); margin-bottom: 1.25rem;">Ticket Distribution by Category</h3>
+          <div id="chart-category-bars"></div>
+        </div>
+        <div class="glass-panel" style="padding: 1.5rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-heading); margin-bottom: 1.25rem;">Priority Level Breakdown</h3>
+          <div id="chart-priority-bars"></div>
+        </div>
+      </div>
+      <div class="glass-panel" style="padding: 1.5rem;">
+        <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-heading); margin-bottom: 1.25rem;">Vendor SLA Compliance</h3>
+        <div id="chart-vendor-compliance"></div>
+      </div>
+    </div>
+
+    <!-- ==================== CHANGE MANAGEMENT VIEW ==================== -->
+    <div id="view-changes" class="fade-in" style="display: none;">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Change Management & Advisory Board</h1>
+          <p class="section-desc">Submit change requests, track approvals, and manage implementation schedules.</p>
+        </div>
+      </div>
+      <div class="grid-2col">
+        <!-- Change Request Form -->
+        <div class="glass-panel" style="padding: 1.75rem;">
+          <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-heading); margin-bottom: 1rem;">
+            <i class="fa-solid fa-plus-circle" style="color: var(--primary-blue);"></i> Submit Change Request
+          </h3>
+          <form id="form-change-request" onsubmit="handleChangeSubmit(event)">
+            <div class="form-group">
+              <label class="form-label">Change Type</label>
+              <select id="change-type" class="form-select" required>
+                <option value="Software Install">Software Installation</option>
+                <option value="Access Change">Access / Permission Change</option>
+                <option value="Config Update">Configuration Update</option>
+                <option value="Infrastructure">Infrastructure Change</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Change Description</label>
+              <textarea id="change-desc" class="form-textarea" placeholder="Describe the change and its purpose..." required style="min-height: 80px;"></textarea>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Business Justification</label>
+              <input type="text" id="change-justification" class="form-input" placeholder="Why is this change needed?" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Expected Impact</label>
+              <select id="change-impact" class="form-select">
+                <option value="Low">Low — Routine, no downtime</option>
+                <option value="Medium">Medium — Brief service interruption</option>
+                <option value="High">High — Extended downtime possible</option>
+                <option value="Critical">Critical — Production deployment</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">
+              <i class="fa-solid fa-paper-plane"></i> Submit Change Request
+            </button>
+          </form>
+        </div>
+
+        <!-- Change Requests Queue -->
+        <div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3 style="font-size: 1.05rem; font-weight: 800; color: var(--text-heading);">Change Request Queue</h3>
+            <span style="font-size: 0.8rem; font-weight: 600; color: var(--text-muted);" id="change-count">Total: 0</span>
+          </div>
+          <div id="changes-container"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== AUDIT LOG VIEW ==================== -->
+    <div id="view-audit" class="fade-in" style="display: none;">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Security & Operations Audit Log</h1>
+          <p class="section-desc">Complete activity trail of logins, ticket actions, SOS triggers, and change approvals.</p>
+        </div>
+      </div>
+      <div class="glass-panel" style="padding: 1.5rem; overflow-x: auto;">
+        <table class="audit-table" style="width: 100%; border-collapse: collapse; font-size: 0.84rem;">
+          <thead>
+            <tr style="border-bottom: 2px solid var(--border-color); text-align: left; color: var(--text-muted);">
+              <th style="padding: 12px 10px;">Timestamp</th>
+              <th style="padding: 12px 10px;">Action</th>
+              <th style="padding: 12px 10px;">User</th>
+              <th style="padding: 12px 10px;">Details</th>
+            </tr>
+          </thead>
+          <tbody id="audit-log-body">
+            <!-- Audit rows rendered here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ==================== FLOOR MAP VIEW ==================== -->
+    <div id="view-floormap" class="fade-in" style="display: none;">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">Interactive Facility Floor Map</h1>
+          <p class="section-desc">Building layout with live incident location pins and desk assignments.</p>
+        </div>
+        <div>
+          <select class="form-select" id="floormap-floor-select" onchange="renderFloorMap()" style="font-size: 0.82rem; padding: 6px 10px;">
+            <option value="1">Floor 1 — Lobby & Facilities</option>
+            <option value="2">Floor 2 — Engineering</option>
+            <option value="3" selected>Floor 3 — Operations</option>
+          </select>
+        </div>
+      </div>
+      <div class="glass-panel" style="padding: 1.5rem;">
+        <div class="floor-legend" style="margin-bottom: 1rem;">
+          <span class="legend-item"><span class="legend-dot" style="background: #DBEAFE;"></span> Desk</span>
+          <span class="legend-item"><span class="legend-dot" style="background: #E0E7FF;"></span> Server Room</span>
+          <span class="legend-item"><span class="legend-dot" style="background: #FEE2E2;"></span> HVAC Unit</span>
+          <span class="legend-item"><span class="legend-dot" style="background: #D1FAE5;"></span> Network Hub</span>
+          <span class="legend-item"><span class="legend-dot" style="background: #FEF3C7;"></span> Meeting Room</span>
+          <span class="legend-item"><span class="legend-dot pulse-dot" style="background: var(--accent-rose);"></span> Active Incident</span>
+        </div>
+        <div class="floor-grid" id="floor-grid">
+          <!-- Floor cells rendered here -->
+        </div>
+      </div>
+      <div id="floormap-incident-detail" style="margin-top: 1rem;"></div>
+    </div>
+
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
