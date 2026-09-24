@@ -47,7 +47,7 @@ mvn spring-boot:run
 ### Step 5: Open in Browser
 
 ```
-http://localhost:8080
+http://localhost:8081
 ```
 
 That's it! The app will start with **H2 in-memory database** — no database installation needed! 🎉
@@ -73,7 +73,7 @@ That's it! The app will start with **H2 in-memory database** — no database ins
 5. In Project Explorer, open:
    `src/main/java` → `com.enterprise.portal` → **`EnterprisePortalApplication.java`**.
 6. Right-click **`EnterprisePortalApplication.java`** → **Run As → Java Application**.
-7. Open browser: `http://localhost:8080`
+7. Open browser: `http://localhost:8081`
 
 ---
 
@@ -82,7 +82,7 @@ That's it! The app will start with **H2 in-memory database** — no database ins
 ### H2 (Default - No Setup Required)
 
 The app uses **H2 in-memory database** by default. Access the H2 console at:
-- **URL:** `http://localhost:8080/h2-console`
+- **URL:** `http://localhost:8081/h2-console`
 - **JDBC URL:** `jdbc:h2:mem:portaldb`
 - **Username:** `sa`
 - **Password:** *(leave empty)*
