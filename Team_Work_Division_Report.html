@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team Work Division Report — Backend & Frontend</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif; color: #1E293B; line-height: 1.65; background: #FFF; max-width: 800px; margin: 0 auto; padding: 40px 50px; }
+  @media print { body { padding: 20px 30px; font-size: 11pt; } .page-break { page-break-before: always; } .no-print { display: none !important; } }
+
+  .header { text-align: center; padding: 28px 0 18px; border-bottom: 3px solid #2563EB; margin-bottom: 28px; }
+  .header h1 { font-size: 1.5rem; font-weight: 800; color: #0F172A; }
+  .header h2 { font-size: 1rem; font-weight: 600; color: #2563EB; margin-top: 4px; }
+  .header .meta { display: flex; justify-content: center; gap: 28px; margin-top: 12px; font-size: 0.8rem; color: #64748B; }
+
+  .section { margin-bottom: 26px; }
+  .sec-num { display: inline-block; background: #2563EB; color: #FFF; font-size: 0.7rem; font-weight: 800; padding: 2px 10px; border-radius: 4px; margin-bottom: 5px; }
+  .sec-num.green { background: #059669; }
+  .sec-num.purple { background: #7C3AED; }
+  .section h2 { font-size: 1.1rem; font-weight: 800; color: #0F172A; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid #E2E8F0; }
+  p { font-size: 0.86rem; color: #334155; margin-bottom: 8px; }
+
+  table { width: 100%; border-collapse: collapse; margin: 8px 0 14px; font-size: 0.82rem; }
+  thead { background: #F1F5F9; }
+  th { padding: 9px 10px; text-align: left; font-weight: 700; color: #0F172A; border-bottom: 2px solid #CBD5E1; font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  td { padding: 8px 10px; border-bottom: 1px solid #E2E8F0; color: #334155; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+
+  .role-card { border-radius: 10px; padding: 18px 20px; margin-bottom: 16px; }
+  .role-card.backend { background: #EFF6FF; border: 1px solid #BFDBFE; border-left: 4px solid #2563EB; }
+  .role-card.frontend { background: #F5F3FF; border: 1px solid #DDD6FE; border-left: 4px solid #7C3AED; }
+  .role-card h3 { font-size: 0.95rem; font-weight: 800; margin-bottom: 3px; }
+  .role-card .subtitle { font-size: 0.8rem; color: #64748B; font-weight: 600; margin-bottom: 10px; }
+  .role-card ul { padding-left: 16px; font-size: 0.84rem; color: #334155; }
+  .role-card ul li { margin-bottom: 4px; }
+
+  .talk-box { background: #FFFBEB; border: 1px solid #FDE68A; border-left: 4px solid #D97706; border-radius: 8px; padding: 14px 16px; margin-bottom: 14px; }
+  .talk-box h4 { font-size: 0.85rem; font-weight: 800; color: #92400E; margin-bottom: 6px; }
+  .talk-box p { font-size: 0.82rem; color: #78350F; margin-bottom: 4px; font-style: italic; }
+  .talk-box ul { padding-left: 16px; font-size: 0.82rem; color: #78350F; }
+  .talk-box ul li { margin-bottom: 3px; }
+
+  .split-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin: 10px 0 16px; }
+
+  .footer { text-align: center; padding: 18px 0; margin-top: 28px; border-top: 2px solid #E2E8F0; font-size: 0.76rem; color: #94A3B8; }
+
+  .print-btn { position: fixed; bottom: 28px; right: 28px; background: linear-gradient(135deg, #2563EB, #1D4ED8); color: #FFF; border: none; padding: 12px 22px; border-radius: 10px; font-size: 0.88rem; font-weight: 700; cursor: pointer; box-shadow: 0 8px 20px rgba(37,99,235,0.3); font-family: inherit; }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">📄 Save as PDF (Ctrl+P)</button>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Enterprise IT & Corporate Facilities Service Portal</h1>
+  <h2>Team Work Division Report — Backend & Frontend</h2>
+  <div class="meta">
+    <span>📅 Date: 04 August 2026</span>
+    <span>👥 Team Size: 2</span>
+    <span>📦 Total Modules: 12</span>
+  </div>
+</div>
+
+<!-- SECTION 1: TEAM ROLES -->
+<div class="section">
+  <span class="sec-num">SECTION 1</span>
+  <h2>Team Role Assignment</h2>
+  <p>The project work is divided into two clear specializations. Each team member owns their domain across all 12 modules and 60 working days.</p>
+
+  <div class="split-grid">
+    <div class="role-card backend">
+      <h3 style="color: #1D4ED8;">🔧 You — Backend Developer</h3>
+      <div class="subtitle">Server-side, Database, APIs, AI/ML</div>
+      <ul>
+        <li>Python FastAPI server development</li>
+        <li>PostgreSQL database design & queries</li>
+        <li>SQLAlchemy ORM models</li>
+        <li>Hugging Face AI model integration</li>
+        <li>REST API endpoint creation</li>
+        <li>FormSubmit.co email API integration</li>
+        <li>Authentication & security logic</li>
+        <li>Data processing & business rules</li>
+      </ul>
+    </div>
+    <div class="role-card frontend">
+      <h3 style="color: #7C3AED;">🎨 Saraswathi — Frontend Developer</h3>
+      <div class="subtitle">UI/UX, Design, Interactions, Testing</div>
+      <ul>
+        <li>HTML page structure & layout</li>
+        <li>CSS styling & glassmorphism design</li>
+        <li>JavaScript DOM interactions</li>
+        <li>Responsive design (mobile/desktop)</li>
+        <li>Form validation & user feedback</li>
+        <li>Animations & micro-interactions</li>
+        <li>UI testing & quality assurance</li>
+        <li>Accessibility & cross-browser testing</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: WEEK-BY-WEEK SPLIT -->
+<div class="section">
+  <span class="sec-num">SECTION 2</span>
+  <h2>Module-wise Work Division (All 12 Weeks)</h2>
+
+  <table>
+    <thead>
+      <tr><th>Week</th><th>Module</th><th>🔧 You (Backend)</th><th>🎨 Saraswathi (Frontend)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:800;">W1</td>
+        <td style="font-weight:700;">Core UI & Design System</td>
+        <td>Project folder structure, file architecture, build setup</td>
+        <td>CSS design tokens, glassmorphism components, responsive grids, animations</td>
+      </tr>
+      <tr>
+        <td style="font-weight:800;">W2</td>
+        <td style="font-weight:700;">Authentication & 2FA</td>
+        <td>User database model, OTP generation logic, FormSubmit.co API integration, session persistence logic, brute-force lockout</td>
+        <td>Login form UI, OTP verification screen, demo role pills, error alerts, input styling</td>
+      </tr>
+      <tr>
+        <td style="font-weight:800;">W3</td>
+        <td style="font-weight:700;">Service Desk & Tickets</td>
+        <td>Ticket data model, submission logic, domain filtering algorithm, SLA timer engine (setInterval), status update handlers</td>
+        <td>Service catalog cards, ticket form UI, ticket card components, technician queue layout, status badges</td>
+      </tr>
+      <tr>
+        <td style="font-weight:800;">W4</td>
+        <td style="font-weight:700;">Emergency SOS & Telephony</td>
+        <td>SOS call trigger logic (tel: protocol), admin email dispatch via FormSubmit.co API, dual-channel alert system</td>
+        <td>Settings modal UI, SOS phone input field, emergency alert styling, notification cards</td>
+      </tr>
+      <tr>
+        <td style="font-weight:800;">W5</td>
+        <td style="font-weight:700;">AI NLP Microservice</td>
+        <td>Python FastAPI server, Hugging Face model loading (DistilBERT + RoBERTa), /analyze REST endpoint, heuristic fallback classifier</td>
+        <td>AI preview panel UI, live inference display, category/priority/vendor output cards, loading indicators</td>
+      </tr>
+      <tr style="background: #EFF6FF;">
+        <td style="font-weight:800;">W6</td>
+        <td style="font-weight:700;">Knowledge Base</td>
+        <td>KB article data model, search/filter API logic, deflection matching algorithm, deflection metrics tracking</td>
+        <td>KB tab UI, article grid, search bar, article detail modal, deflection suggestion box in ticket form</td>
+      </tr>
+      <tr style="background: #EFF6FF;">
+        <td style="font-weight:800;">W7</td>
+        <td style="font-weight:700;">IT Asset Management</td>
+        <td>Asset data model, PostgreSQL schema (assets table), lifecycle status logic, asset-ticket foreign key linking, warranty expiry calculation</td>
+        <td>ITAM tab UI, asset cards with icons, status badges, asset dropdown in ticket form, warranty alert styling</td>
+      </tr>
+      <tr style="background: #EFF6FF;">
+        <td style="font-weight:800;">W8</td>
+        <td style="font-weight:700;">Major Incidents</td>
+        <td>Incident data model, batch resolution logic (update multiple tickets), timeline event logging, stakeholder notification dispatch</td>
+        <td>Major Incident tab UI, incident alert cards, timeline component, batch select checkboxes, resolution modal</td>
+      </tr>
+      <tr style="background: #EFF6FF;">
+        <td style="font-weight:800;">W9</td>
+        <td style="font-weight:700;">SLA Analytics</td>
+        <td>Data aggregation engine (ticket stats, MTTR calculation, SLA breach rate, vendor scores), trend comparison logic</td>
+        <td>Bar chart components (CSS-only), progress bars, KPI metric cards, analytics tab layout, trend indicators</td>
+      </tr>
+      <tr style="background: #EFF6FF;">
+        <td style="font-weight:800;">W10</td>
+        <td style="font-weight:700;">Change Management</td>
+        <td>Change request data model, approval state machine (Pending→Approved→Implemented→Rejected), risk auto-classification algorithm</td>
+        <td>Change request form UI, approval queue panel, approve/reject buttons, change calendar, risk level badges</td>
+      </tr>
+      <tr style="background: #EFF6FF;">
+        <td style="font-weight:800;">W11</td>
+        <td style="font-weight:700;">Self-Service Enhancements</td>
+        <td>Chat message data model, message send/receive logic, CSAT rating storage, profile data aggregation, quick action ticket templates</td>
+        <td>Chat thread modal UI, message bubbles, star rating component, profile page layout, quick action button cards</td>
+      </tr>
+      <tr style="background: #EFF6FF;">
+        <td style="font-weight:800;">W12</td>
+        <td style="font-weight:700;">Themes, Audit & UAT</td>
+        <td>Dark theme CSS variable set, audit log data model & event tracking, localStorage theme persistence, final backend testing</td>
+        <td>Dark/Light theme toggle UI, audit log table, campus floor map (SVG), full UI testing & cross-browser QA</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: YOUR BACKEND TALKING POINTS -->
+<div class="section page-break">
+  <span class="sec-num">SECTION 3</span>
+  <h2>🔧 Your Backend Work — Talking Points for Mam</h2>
+  <p>Use these points when explaining your specific contributions to the project:</p>
+
+  <div class="talk-box">
+    <h4>🗣️ Point 1: "I built the Python FastAPI backend server"</h4>
+    <ul>
+      <li>"I developed the backend server using Python FastAPI framework with Uvicorn as the ASGI server"</li>
+      <li>"The server exposes REST API endpoints like /analyze for AI classification and /tickets for CRUD operations"</li>
+      <li>"I chose FastAPI because it supports async operations and auto-generates API documentation"</li>
+    </ul>
+  </div>
+
+  <div class="talk-box">
+    <h4>🗣️ Point 2: "I integrated Hugging Face AI models for ticket classification"</h4>
+    <ul>
+      <li>"I loaded two pre-trained NLP models — DistilBERT for category classification and RoBERTa for sentiment/urgency analysis"</li>
+      <li>"When a user types a ticket description, my backend analyzes the text and returns the predicted category (Hardware/Software/Facilities/Network) and priority level (P1–P4)"</li>
+      <li>"I also built a heuristic fallback classifier so the frontend works even without the Python server"</li>
+    </ul>
+  </div>
+
+  <div class="talk-box">
+    <h4>🗣️ Point 3: "I designed the PostgreSQL database schema"</h4>
+    <ul>
+      <li>"I designed the relational database with tables for users, tickets, assets, kb_articles, change_requests, and audit_logs"</li>
+      <li>"I used SQLAlchemy ORM to map Python objects to database tables — so we write Python code, not raw SQL"</li>
+      <li>"I set up foreign key relationships — for example, each ticket links to a user (creator) and optionally to an asset"</li>
+    </ul>
+  </div>
+
+  <div class="talk-box">
+    <h4>🗣️ Point 4: "I implemented the authentication and security system"</h4>
+    <ul>
+      <li>"I built the multi-role login system with 3 roles — Admin, Employee, and Technician — each seeing different dashboards"</li>
+      <li>"I integrated FormSubmit.co REST API to send real 2FA OTP codes to the user's Gmail inbox"</li>
+      <li>"I implemented brute-force protection that locks accounts for 15 minutes after 5 failed login attempts"</li>
+    </ul>
+  </div>
+
+  <div class="talk-box">
+    <h4>🗣️ Point 5: "I built the SLA timer engine and business logic"</h4>
+    <ul>
+      <li>"I created the SLA countdown engine that assigns different time limits based on priority — P1 gets 2 hours, P2 gets 8 hours, P3 gets 24 hours"</li>
+      <li>"I wrote the domain filtering algorithm — hardware technicians only see hardware tickets, software technicians only see software tickets"</li>
+      <li>"I built the ticket data model with auto-generated codes like TICK-9F82A1 and automatic vendor routing"</li>
+    </ul>
+  </div>
+
+  <div class="talk-box">
+    <h4>🗣️ Point 6: "I integrated the Emergency SOS dual-alert system"</h4>
+    <ul>
+      <li>"When SOS is triggered, my code does two things simultaneously — opens the phone dialer using tel: protocol AND sends an alert email to the admin"</li>
+      <li>"I used the FormSubmit.co API with fetch() to send the email containing the caller's name, phone number, and timestamp"</li>
+      <li>"This dual-channel approach ensures the admin is alerted even if the phone call doesn't connect"</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 4: SARASWATHI'S FRONTEND TALKING POINTS -->
+<div class="section page-break">
+  <span class="sec-num purple">SECTION 4</span>
+  <h2>🎨 Saraswathi's Frontend Work — Talking Points</h2>
+  <p>Saraswathi can use these points when explaining her contributions:</p>
+
+  <div class="talk-box" style="background:#F5F3FF; border-color:#DDD6FE; border-left-color:#7C3AED;">
+    <h4 style="color:#5B21B6;">🗣️ Point 1: "I created the glassmorphism design system"</h4>
+    <ul style="color:#5B21B6;">
+      <li>"I built a custom CSS design system with 40+ CSS variables for consistent colors, shadows, and spacing"</li>
+      <li>"I used glassmorphism effects — semi-transparent backgrounds with backdrop blur — for a premium modern look"</li>
+      <li>"I chose Plus Jakarta Sans for headings and JetBrains Mono for code/ticket IDs"</li>
+    </ul>
+  </div>
+
+  <div class="talk-box" style="background:#F5F3FF; border-color:#DDD6FE; border-left-color:#7C3AED;">
+    <h4 style="color:#5B21B6;">🗣️ Point 2: "I made the UI fully responsive"</h4>
+    <ul style="color:#5B21B6;">
+      <li>"I built responsive grid layouts that adapt from 4-column on desktop to single-column on mobile"</li>
+      <li>"I used CSS media queries to ensure every component — cards, tables, forms, modals — looks good on all screen sizes"</li>
+      <li>"I tested cross-browser compatibility on Chrome, Edge, and Firefox"</li>
+    </ul>
+  </div>
+
+  <div class="talk-box" style="background:#F5F3FF; border-color:#DDD6FE; border-left-color:#7C3AED;">
+    <h4 style="color:#5B21B6;">🗣️ Point 3: "I designed all the form UIs and modals"</h4>
+    <ul style="color:#5B21B6;">
+      <li>"I created the login form, OTP screen, ticket submission form, settings modal, and notification center"</li>
+      <li>"I added input validation feedback — error alerts, focus rings, and success toasts"</li>
+      <li>"I built the 6-box OTP input with auto-focus that automatically moves to the next box as you type"</li>
+    </ul>
+  </div>
+
+  <div class="talk-box" style="background:#F5F3FF; border-color:#DDD6FE; border-left-color:#7C3AED;">
+    <h4 style="color:#5B21B6;">🗣️ Point 4: "I built the ticket card components and dashboard layouts"</h4>
+    <ul style="color:#5B21B6;">
+      <li>"I designed the ticket cards with priority-colored left borders, status badges, and metadata rows"</li>
+      <li>"I created the Admin dashboard layout with KPI metric cards, data tables, and vendor leaderboard"</li>
+      <li>"I added smooth hover effects and fade-in animations for better user experience"</li>
+    </ul>
+  </div>
+
+  <div class="talk-box" style="background:#F5F3FF; border-color:#DDD6FE; border-left-color:#7C3AED;">
+    <h4 style="color:#5B21B6;">🗣️ Point 5: "I implemented the notification center UI"</h4>
+    <ul style="color:#5B21B6;">
+      <li>"I built the notification bell with a red badge counter showing unread count"</li>
+      <li>"I created color-coded notification cards — red for emergencies, amber for SLA warnings, blue for security"</li>
+      <li>"I added 'Mark All as Read' and individual 'Clear' buttons for notification management"</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SECTION 5: TECHNOLOGY OWNERSHIP -->
+<div class="section">
+  <span class="sec-num">SECTION 5</span>
+  <h2>Technology Ownership Split</h2>
+
+  <table>
+    <thead><tr><th>Technology</th><th>Owner</th><th>What They Do With It</th></tr></thead>
+    <tbody>
+      <tr><td style="font-weight:700;">Python</td><td style="color:#2563EB; font-weight:700;">You (Backend)</td><td>FastAPI server, AI model loading, data processing</td></tr>
+      <tr><td style="font-weight:700;">FastAPI</td><td style="color:#2563EB; font-weight:700;">You (Backend)</td><td>REST API endpoints, request/response handling</td></tr>
+      <tr><td style="font-weight:700;">PostgreSQL</td><td style="color:#2563EB; font-weight:700;">You (Backend)</td><td>Database schema design, tables, queries</td></tr>
+      <tr><td style="font-weight:700;">SQLAlchemy</td><td style="color:#2563EB; font-weight:700;">You (Backend)</td><td>ORM models mapping Python ↔ PostgreSQL</td></tr>
+      <tr><td style="font-weight:700;">Hugging Face</td><td style="color:#2563EB; font-weight:700;">You (Backend)</td><td>DistilBERT + RoBERTa AI model integration</td></tr>
+      <tr><td style="font-weight:700;">FormSubmit.co API</td><td style="color:#2563EB; font-weight:700;">You (Backend)</td><td>Email dispatch for OTP and SOS alerts</td></tr>
+      <tr style="background:#F5F3FF;">
+        <td style="font-weight:700;">HTML5</td><td style="color:#7C3AED; font-weight:700;">Saraswathi (Frontend)</td><td>Page structure, semantic elements, forms</td></tr>
+      <tr style="background:#F5F3FF;">
+        <td style="font-weight:700;">CSS3</td><td style="color:#7C3AED; font-weight:700;">Saraswathi (Frontend)</td><td>Design system, glassmorphism, responsive layout</td></tr>
+      <tr style="background:#F5F3FF;">
+        <td style="font-weight:700;">JavaScript</td><td style="color:#7C3AED; font-weight:700;">Saraswathi (Frontend)</td><td>DOM manipulation, event handlers, UI rendering</td></tr>
+      <tr style="background:#F5F3FF;">
+        <td style="font-weight:700;">Font Awesome</td><td style="color:#7C3AED; font-weight:700;">Saraswathi (Frontend)</td><td>Icon selection and placement</td></tr>
+      <tr style="background:#F5F3FF;">
+        <td style="font-weight:700;">Google Fonts</td><td style="color:#7C3AED; font-weight:700;">Saraswathi (Frontend)</td><td>Typography system</td></tr>
+      <tr>
+        <td style="font-weight:700;">localStorage</td><td style="color:#64748B; font-weight:700;">Both (Shared)</td><td>You: session/data logic | Saraswathi: UI state</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 6: SUMMARY -->
+<div class="section">
+  <span class="sec-num">SECTION 6</span>
+  <h2>Work Distribution Summary</h2>
+
+  <div class="split-grid">
+    <div class="role-card backend">
+      <h3 style="color:#1D4ED8;">🔧 You — Backend</h3>
+      <table style="font-size:0.78rem; margin:8px 0 0;">
+        <tr><td>Languages</td><td style="font-weight:700;">Python, SQL</td></tr>
+        <tr><td>Framework</td><td style="font-weight:700;">FastAPI + Uvicorn</td></tr>
+        <tr><td>Database</td><td style="font-weight:700;">PostgreSQL + SQLAlchemy</td></tr>
+        <tr><td>AI/ML</td><td style="font-weight:700;">Hugging Face (2 models)</td></tr>
+        <tr><td>APIs Built</td><td style="font-weight:700;">6+ REST endpoints</td></tr>
+        <tr><td>Key Files</td><td style="font-weight:700;">server.py, models.py, app.js (logic)</td></tr>
+      </table>
+    </div>
+    <div class="role-card frontend">
+      <h3 style="color:#7C3AED;">🎨 Saraswathi — Frontend</h3>
+      <table style="font-size:0.78rem; margin:8px 0 0;">
+        <tr><td>Languages</td><td style="font-weight:700;">HTML, CSS, JavaScript</td></tr>
+        <tr><td>Design</td><td style="font-weight:700;">Glassmorphism + CSS Tokens</td></tr>
+        <tr><td>Components</td><td style="font-weight:700;">15+ reusable UI components</td></tr>
+        <tr><td>Screens</td><td style="font-weight:700;">Login, OTP, Dashboard ×3, Modals</td></tr>
+        <tr><td>Testing</td><td style="font-weight:700;">Cross-browser QA</td></tr>
+        <tr><td>Key Files</td><td style="font-weight:700;">index.html, styles.css, app.js (UI)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <p style="text-align:center; font-weight:700; color:#64748B; margin-top:10px;">Both team members collaborate on integration — connecting frontend UI to backend APIs using JavaScript fetch() calls.</p>
+</div>
+
+<div class="footer">
+  <strong>Enterprise IT & Corporate Facilities Service Portal</strong><br>
+  Team Work Division Report | You (Backend) & Saraswathi (Frontend)<br>
+  12 Weeks | 60 Working Days | 12 Modules<br>
+  Report Date: 04 August 2026
+</div>
+
+</body>
+</html>

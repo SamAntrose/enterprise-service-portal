@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saraswathi — Frontend Work Reference</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif; color: #1E293B; line-height: 1.8; background: #FFF; max-width: 720px; margin: 0 auto; padding: 44px 50px; font-size: 0.92rem; }
+  @media print { body { padding: 28px 38px; font-size: 11pt; } .no-print { display: none !important; } }
+
+  h1 { font-size: 1.35rem; font-weight: 800; color: #0F172A; text-align: center; margin-bottom: 2px; }
+  .subtitle { text-align: center; font-size: 0.88rem; color: #64748B; font-weight: 600; margin-bottom: 6px; }
+  .date { text-align: center; font-size: 0.78rem; color: #94A3B8; margin-bottom: 28px; padding-bottom: 18px; border-bottom: 2px solid #E2E8F0; }
+
+  h2 { font-size: 1.05rem; font-weight: 800; color: #0F172A; margin-top: 26px; margin-bottom: 10px; }
+  h3 { font-size: 0.92rem; font-weight: 700; color: #334155; margin-top: 18px; margin-bottom: 6px; }
+
+  p { color: #334155; margin-bottom: 8px; }
+
+  ul { padding-left: 22px; margin-bottom: 12px; color: #334155; }
+  ul li { margin-bottom: 5px; }
+
+  .divider { border: none; border-top: 1px solid #E2E8F0; margin: 24px 0; }
+
+  .footer { text-align: center; font-size: 0.76rem; color: #94A3B8; margin-top: 34px; padding-top: 16px; border-top: 2px solid #E2E8F0; }
+
+  .print-btn { position: fixed; bottom: 26px; right: 26px; background: #7C3AED; color: #FFF; border: none; padding: 12px 22px; border-radius: 10px; font-size: 0.88rem; font-weight: 700; cursor: pointer; box-shadow: 0 6px 18px rgba(124,58,237,0.3); font-family: inherit; }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">📄 Save as PDF</button>
+
+<h1>Saraswathi — Frontend Developer</h1>
+<div class="subtitle">Enterprise IT & Corporate Facilities Service Portal</div>
+<div class="date">Role: Frontend Development & UI/UX Design | 04 August 2026</div>
+
+<p>Hi Saraswathi, these are your talking points for explaining your frontend work. Each section has sentences you can use directly when mam asks about your contribution.</p>
+
+<hr class="divider">
+
+<h2>Your Role in the Project</h2>
+
+<p>You are the Frontend Developer responsible for everything the user sees and interacts with — the visual design, page layouts, forms, modals, cards, animations, responsive design, and cross-browser testing. You work with HTML, CSS, and JavaScript to build the user interface, while the backend (Python, FastAPI, PostgreSQL, AI models) is handled by your teammate.</p>
+
+<hr class="divider">
+
+<h2>Talking Points</h2>
+
+<h3>1. "I created the glassmorphism design system"</h3>
+<ul>
+  <li>I built a custom CSS design system with 40+ CSS variables for consistent colors, shadows, and spacing across the entire application.</li>
+  <li>I used glassmorphism effects — semi-transparent backgrounds with backdrop blur — to give the portal a premium, modern enterprise look.</li>
+  <li>I selected Plus Jakarta Sans for headings and JetBrains Mono for ticket codes from Google Fonts.</li>
+  <li>All visual components like buttons, cards, badges, and form inputs are built as reusable CSS classes so we don't repeat styling code anywhere.</li>
+</ul>
+
+<h3>2. "I made the entire UI fully responsive"</h3>
+<ul>
+  <li>I built responsive grid layouts that automatically change from 4-column on desktop to single-column on mobile screens.</li>
+  <li>I used CSS media queries to ensure every component — cards, tables, forms, modals — looks good on all screen sizes.</li>
+  <li>I tested cross-browser compatibility on Chrome, Edge, and Firefox to make sure the UI works everywhere.</li>
+  <li>The navigation bar is sticky — it stays at the top when users scroll, so they always have access to search and notifications.</li>
+</ul>
+
+<h3>3. "I designed all the forms, modals, and input screens"</h3>
+<ul>
+  <li>I created the login form with email and password fields, icon prefixes inside the inputs, and 4 quick-fill demo buttons for rapid testing.</li>
+  <li>I built the OTP verification screen with 6 individual input boxes that auto-focus to the next box as you type each digit.</li>
+  <li>I designed the ticket submission form with Title, Location, and Description fields, plus the AI preview panel below it.</li>
+  <li>I created the Settings modal with the SOS phone number input, and the Notification center modal with color-coded alert cards.</li>
+  <li>I added validation feedback — error alerts show in red, input focus rings glow blue, and success messages appear as toast notifications.</li>
+</ul>
+
+<h3>4. "I built the ticket cards and dashboard components"</h3>
+<ul>
+  <li>I designed the ticket cards with priority-colored left borders — red for P1 Critical, amber for P2 High, and blue for P3 Medium.</li>
+  <li>Each card displays the ticket code, title, category icon, location, assigned vendor, and a status badge showing Submitted, In Progress, or Resolved.</li>
+  <li>I created the Admin dashboard with 4 KPI metric cards showing total tickets, active P1 emergencies, AI triage accuracy, and vendor SLA compliance.</li>
+  <li>I added smooth hover effects where cards lift up when you mouse over them, and fade-in animations when views load.</li>
+</ul>
+
+<h3>5. "I implemented the notification center UI"</h3>
+<ul>
+  <li>I built the notification bell icon in the header with a red badge counter that displays the number of unread notifications.</li>
+  <li>I created color-coded notification cards — red for emergencies, amber for SLA warnings, and blue for security alerts.</li>
+  <li>I added a "Mark All as Read" button and individual "Clear" buttons for each notification.</li>
+  <li>When all notifications are cleared, a friendly "All Caught Up" message appears with a green checkmark.</li>
+</ul>
+
+<h3>6. "I handle dynamic rendering using JavaScript"</h3>
+<ul>
+  <li>I wrote the DOM rendering functions that dynamically create ticket cards, technician queue items, and notification lists using JavaScript.</li>
+  <li>I built the service catalog — 4 clickable quick-action cards for Hardware, Software, Facilities, and Network categories.</li>
+  <li>I styled the AI preview panel that updates in real-time showing the predicted category, priority, and vendor as the user types.</li>
+  <li>I used template literals and innerHTML to generate HTML dynamically based on ticket and notification data.</li>
+</ul>
+
+<h3>7. "In the upcoming weeks, I'll build more advanced UI features"</h3>
+<ul>
+  <li>Knowledge Base article grid with search filtering and article detail modals (Week 6).</li>
+  <li>IT Asset Management cards with device icons, serial numbers, and lifecycle status badges (Week 7).</li>
+  <li>CSS-only bar charts and progress bars for the analytics dashboard — built without any external charting library (Week 9).</li>
+  <li>A complete Dark and Light theme toggle where every single component is styled for both modes (Week 12).</li>
+  <li>An interactive campus floor map built with SVG, showing clickable incident location pins (Week 12).</li>
+</ul>
+
+<hr class="divider">
+
+<h2>Technologies You Work With</h2>
+<ul>
+  <li><strong>HTML5</strong> — Page structure, semantic elements, forms, and modals.</li>
+  <li><strong>CSS3</strong> — Design system, glassmorphism, responsive layouts, animations, and theme engine.</li>
+  <li><strong>JavaScript</strong> — DOM manipulation, event handlers, dynamic rendering, and form validation.</li>
+  <li><strong>Font Awesome 6.5</strong> — 500+ scalable vector icons used across all UI components.</li>
+  <li><strong>Google Fonts</strong> — Plus Jakarta Sans for text and JetBrains Mono for code elements.</li>
+</ul>
+
+<hr class="divider">
+
+<h2>One-Line Summary</h2>
+<p><em>"I am responsible for everything the user sees and interacts with — the design, layout, forms, cards, modals, animations, responsive design, and cross-browser testing across all 12 modules of this enterprise portal."</em></p>
+
+<div class="footer">
+  Enterprise IT & Corporate Facilities Service Portal<br>
+  Saraswathi — Frontend Developer | 12 Weeks · 12 Modules · 60 Working Days
+</div>
+
+</body>
+</html>

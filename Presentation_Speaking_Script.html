@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sam Antrose — Presentation Speaking Script</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif; color: #1E293B; line-height: 1.8; background: #FFF; max-width: 720px; margin: 0 auto; padding: 44px 50px; font-size: 0.92rem; }
+  @media print { body { padding: 28px 38px; font-size: 11pt; } .no-print { display: none !important; } .page-break { page-break-before: always; } }
+
+  h1 { font-size: 1.4rem; font-weight: 800; color: #0F172A; text-align: center; margin-bottom: 2px; }
+  .subtitle { text-align: center; font-size: 0.88rem; color: #3B82F6; font-weight: 600; margin-bottom: 6px; }
+  .date { text-align: center; font-size: 0.78rem; color: #94A3B8; margin-bottom: 28px; padding-bottom: 18px; border-bottom: 2px solid #E2E8F0; }
+
+  .guide-box { background: #EFF6FF; border-left: 4px solid #3B82F6; border-radius: 8px; padding: 14px 16px; margin-bottom: 24px; font-size: 0.88rem; color: #1E3A8A; }
+  .guide-box strong { color: #1E3A8A; }
+
+  h2 { font-size: 1.1rem; font-weight: 800; color: #0F172A; margin-top: 26px; margin-bottom: 10px; border-bottom: 1px solid #E2E8F0; padding-bottom: 6px; }
+  
+  .quote-box { background: #F8FAFC; border-left: 4px solid #64748B; border-radius: 8px; padding: 12px 14px; margin-bottom: 12px; font-style: italic; color: #334155; font-weight: 500; }
+  
+  ul { padding-left: 22px; margin-bottom: 16px; color: #334155; }
+  ul li { margin-bottom: 6px; }
+  ul li strong { color: #0F172A; }
+
+  .divider { border: none; border-top: 1px solid #E2E8F0; margin: 24px 0; }
+  .footer { text-align: center; font-size: 0.76rem; color: #94A3B8; margin-top: 34px; padding-top: 16px; border-top: 2px solid #E2E8F0; }
+
+  .print-btn { position: fixed; bottom: 26px; right: 26px; background: #3B82F6; color: #FFF; border: none; padding: 12px 22px; border-radius: 10px; font-size: 0.88rem; font-weight: 700; cursor: pointer; box-shadow: 0 6px 18px rgba(59,130,246,0.3); font-family: inherit; }
+  .print-btn:hover { background: #2563EB; }
+</style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">📄 Save as PDF</button>
+
+<h1>Presentation Speaking Script</h1>
+<div class="subtitle">Enterprise IT & Corporate Facilities Service Portal</div>
+<div class="date">Presenter: Sam Antrose A H (Teammate: Saraswathi E) | 18 August 2026</div>
+
+<div class="guide-box">
+  <strong>How to use this script:</strong> Below is a slide-by-slide guide for your presentation. Each slide has an <strong>Opening Sentence</strong> (what to say first) and a set of <strong>Key Points</strong> (the details to explain).
+</div>
+
+<!-- SLIDE 1 -->
+<h2>Slide 1: Title Slide</h2>
+<div class="quote-box">
+  "Good morning everyone. I'm Sam Antrose, and my teammate is Saraswathi. We are presenting our project — Enterprise IT & Corporate Facilities Service Portal."
+</div>
+<ul>
+  <li>This project is a unified, intelligent system designed to coordinate both IT support and corporate facilities issues under one single interface.</li>
+</ul>
+
+<!-- SLIDE 2 -->
+<h2>Slide 2: Abstract</h2>
+<div class="quote-box">
+  "Our project is an AI-powered web application for managing IT support and facility maintenance in an organization."
+</div>
+<ul>
+  <li><strong>Natural Language Input:</strong> Employees can type their issues in plain, everyday English.</li>
+  <li><strong>AI-Powered Triage:</strong> The system automatically classifies the request's category and priority using Hugging Face NLP models (DistilBERT & RoBERTa).</li>
+  <li><strong>Automatic Routing:</strong> Tickets are auto-routed directly to the appropriate specialist team (Hardware, Software, Facilities, or Network).</li>
+  <li><strong>Tech Stack:</strong> Built on a modern, decoupled architecture using HTML, CSS, JavaScript on the frontend, and Python FastAPI with PostgreSQL on the backend.</li>
+</ul>
+
+<!-- SLIDE 3 -->
+<h2>Slide 3: Objectives</h2>
+<div class="quote-box">
+  "Our primary goals are focused on automation, efficiency, and real-time oversight."
+</div>
+<ul>
+  <li><strong>Automate Routing:</strong> We automate ticket classification to completely bypass manual triage bottlenecks.</li>
+  <li><strong>SLA Enforcements:</strong> We show ticking timers directly inside queues to enforce deadlines for critical issues.</li>
+  <li><strong>Urgency Response:</strong> Telephony dialers and admin alerts dispatch for high-risk P1 facilities crises.</li>
+  <li><strong>Deflect Tickets:</strong> Self-service articles prompt matches dynamically to reduce recurring ticket queues.</li>
+</ul>
+
+<!-- SLIDE 4 -->
+<div class="page-break"></div>
+<h2>Slide 4: Existing System</h2>
+<div class="quote-box">
+  "Let us examine how service tickets are managed currently."
+</div>
+<ul>
+  <li><strong>Manual Sorting:</strong> Triage staff have to read, categorize, and route incoming requests manually, creating massive bottlenecks.</li>
+  <li><strong>Fragmented Systems:</strong> Facility maintenance, IT requests, and emergency contacts are scattered across disconnected spreadsheets and emails.</li>
+  <li><strong>Missing deadliness:</strong> Support groups cannot easily track resolution deadlines in real-time.</li>
+  <li><strong>Zero Self-Help:</strong> Repetitive calls for simple issues flood service desks without automated search suggestions.</li>
+</ul>
+
+<!-- SLIDE 5 -->
+<h2>Slide 5: Problem Statement</h2>
+<div class="quote-box">
+  "This manual system creates major operational issues for enterprises."
+</div>
+<ul>
+  <li><strong>High Response Time (MTTR):</strong> Delayed assignments directly lead to long resolution cycles.</li>
+  <li><strong>Human Routing Errors:</strong> Up to 30% of manual request tickets are sent to wrong specialist technician queues.</li>
+  <li><strong>Unmonitored SLA Breaches:</strong> No automated countdown notifications mean deadlines are repeatedly missed.</li>
+  <li><strong>High Operations Cost:</strong> Dedicating full-time staff to manual ticket sorting raises overhead.</li>
+</ul>
+
+<!-- SLIDE 6 -->
+<h2>Slide 6: Proposed System</h2>
+<div class="quote-box">
+  "To address these issues, we designed a unified, intelligent service portal."
+</div>
+<ul>
+  <li><strong>NLP AI Core:</strong> Live text analysis loads DistilBERT & RoBERTa models as the user types.</li>
+  <li><strong>Visual Countdowns:</strong> SLA timers show technicians exact resolution timelines (P1=2h, P2=8h, P3=24h).</li>
+  <li><strong>SOS Email & Telephony:</strong> One-click trigger runs voice dialer and dispatches alert emails to the admin simultaneously.</li>
+  <li><strong>Central DB Persistence:</strong> Relational PostgreSQL storage tracks all users, tickets, and logs via SQLAlchemy.</li>
+</ul>
+
+<!-- SLIDE 7 -->
+<div class="page-break"></div>
+<h2>Slide 7: Modules Description</h2>
+<div class="quote-box">
+  "The platform was built across 12 distinct weekly milestones."
+</div>
+<ul>
+  <li><strong>M1-M3:</strong> Front-end glassmorphism design system, 2FA secure email OTP verification, and basic ticketing engine.</li>
+  <li><strong>M4-M5:</strong> Integration of emergency SOS telephony links and backend Hugging Face AI FastAPI endpoints.</li>
+  <li><strong>M6-M7:</strong> Deflector deflection rules via KB articles, and IT Asset registry lifecycle tracker.</li>
+  <li><strong>M8-M9:</strong> Major Incident dashboard workspace, and pure CSS SLA performance progress charts.</li>
+  <li><strong>M10-M12:</strong> Change management workflow, peer-to-peer ticket chat, dark theme, and audit logging.</li>
+</ul>
+
+<!-- SLIDE 8 -->
+<h2>Slide 8: Data Flow Diagram (DFD)</h2>
+<div class="quote-box">
+  "Here is how request data flows from the user to database resolution."
+</div>
+<ul>
+  <li><strong>User Input:</strong> Request starts when an employee submits details in the web form.</li>
+  <li><strong>AI processing:</strong> The FastAPI backend queries NLP models to set category, priority, and vendor.</li>
+  <li><strong>Database Write:</strong> Structured details are written to PostgreSQL tables via SQLAlchemy ORM.</li>
+  <li><strong>Technician update:</strong> Technician works on active queues, resolving the ticket and logging audit events.</li>
+</ul>
+
+
+<!-- SLIDE 9 -->
+<h2>Slide 9: System Workflow</h2>
+<div class="quote-box">
+  "Here is the step-by-step processing workflow of an incident."
+</div>
+<ul>
+  <li><strong>Submission & Triage:</strong> User enters the ticket, AI classifies details, routes to vendor, and SLA starts.</li>
+  <li><strong>Queue Work:</strong> Technician claims ticket, works on the issues, and collaborates via chat modal.</li>
+  <li><strong>Resolution & Logging:</strong> SLA stops, ticket status changes, and a permanent security audit record is written.</li>
+</ul>
+
+<!-- SLIDE 10 -->
+<h2>Slide 10: Requirements</h2>
+<div class="quote-box">
+  "These are the software and hardware requirements needed to deploy the portal."
+</div>
+<ul>
+  <li><strong>Software:</strong> HTML/CSS/JS frontend, Python FastAPI + Uvicorn backend, PostgreSQL DB, SQLAlchemy ORM, and Hugging Face AI.</li>
+  <li><strong>Hardware:</strong> Minimum Intel Core i3 (i5 recommended for local AI load), 4GB RAM (8GB recommended), and active internet.</li>
+</ul>
+
+<!-- SLIDE 11 -->
+<h2>Slide 11: Thank You</h2>
+<div class="quote-box">
+  "Thank you for your time. I am now open to any questions."
+</div>
+<ul>
+  <li>Be ready to explain PostgreSQL setup, FastAPI routing, or Hugging Face token categorization if asked by the panel.</li>
+</ul>
+
+<div class="footer">
+  Enterprise IT & Corporate Facilities Service Portal<br>
+  Speaking Script — Sam Antrose A H | 12 Weeks · 12 Modules
+</div>
+
+</body>
+</html>

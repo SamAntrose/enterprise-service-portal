@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project Progress Report — 12 Week Plan (Weeks 1 to 12)</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    color: #1E293B; line-height: 1.65; background: #FFFFFF;
+    max-width: 800px; margin: 0 auto; padding: 40px 50px;
+  }
+
+  @media print {
+    body { padding: 20px 30px; font-size: 11pt; }
+    .page-break { page-break-before: always; }
+    .no-print { display: none !important; }
+  }
+
+  /* Header */
+  .report-header {
+    text-align: center; padding: 30px 0 20px;
+    border-bottom: 3px solid #2563EB; margin-bottom: 25px;
+  }
+  .report-header .logo {
+    width: 56px; height: 56px; background: linear-gradient(135deg, #2563EB, #1D4ED8);
+    color: #FFF; border-radius: 12px; display: inline-flex; align-items: center;
+    justify-content: center; font-size: 1.5rem; margin-bottom: 12px;
+  }
+  .report-header h1 { font-size: 1.6rem; font-weight: 800; color: #0F172A; letter-spacing: -0.03em; }
+  .report-header h2 { font-size: 1.05rem; font-weight: 600; color: #2563EB; margin-top: 4px; }
+  .report-meta { display: flex; justify-content: center; gap: 30px; margin-top: 14px; font-size: 0.82rem; color: #64748B; }
+  .report-meta span { display: flex; align-items: center; gap: 5px; }
+
+  /* Sections */
+  .section { margin-bottom: 28px; }
+  .section-num { display: inline-block; background: #2563EB; color: #FFF; font-size: 0.72rem; font-weight: 800; padding: 2px 10px; border-radius: 4px; margin-bottom: 6px; }
+  .section h2 { font-size: 1.15rem; font-weight: 800; color: #0F172A; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #E2E8F0; }
+
+  p { font-size: 0.88rem; color: #334155; margin-bottom: 10px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; margin: 10px 0 16px; font-size: 0.82rem; }
+  thead { background: #F1F5F9; }
+  th { padding: 10px 12px; text-align: left; font-weight: 700; color: #0F172A; border-bottom: 2px solid #CBD5E1; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; }
+  td { padding: 9px 12px; border-bottom: 1px solid #E2E8F0; color: #334155; vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+
+  /* Week Cards */
+  .week-card {
+    background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 10px;
+    padding: 18px 20px; margin-bottom: 18px; position: relative;
+    border-left: 4px solid #2563EB;
+  }
+  .week-card.done { border-left-color: #059669; }
+  .week-card h3 { font-size: 1rem; font-weight: 800; color: #0F172A; margin-bottom: 4px; }
+  .week-card .week-status {
+    position: absolute; top: 16px; right: 18px;
+    font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 20px;
+  }
+  .week-card .week-status.complete { background: #ECFDF5; color: #059669; border: 1px solid #A7F3D0; }
+  .week-card .subtitle { font-size: 0.82rem; color: #64748B; font-weight: 600; margin-bottom: 10px; }
+  .week-card ul { padding-left: 18px; font-size: 0.84rem; color: #334155; }
+  .week-card ul li { margin-bottom: 5px; }
+  .week-card .highlight {
+    background: #EFF6FF; border: 1px solid #BFDBFE; border-radius: 6px;
+    padding: 8px 12px; margin-top: 10px; font-size: 0.8rem; color: #1D4ED8; font-weight: 600;
+  }
+
+  /* Metrics */
+  .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 12px 0 18px; }
+  .metric-box {
+    background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px;
+    padding: 14px; text-align: center;
+  }
+  .metric-box .val { font-size: 1.4rem; font-weight: 800; color: #2563EB; }
+  .metric-box .label { font-size: 0.72rem; font-weight: 600; color: #64748B; text-transform: uppercase; margin-top: 2px; }
+
+  /* Roadmap */
+  .roadmap-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 10px 0; border-bottom: 1px solid #E2E8F0;
+  }
+  .roadmap-item:last-child { border-bottom: none; }
+  .roadmap-week {
+    min-width: 60px; font-size: 0.78rem; font-weight: 800;
+    color: #2563EB; background: #EFF6FF; padding: 4px 10px;
+    border-radius: 6px; text-align: center;
+  }
+  .roadmap-text .rt-title { font-size: 0.88rem; font-weight: 700; color: #0F172A; }
+  .roadmap-text .rt-desc { font-size: 0.78rem; color: #64748B; margin-top: 2px; }
+
+  /* Module Cards */
+  .module-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 12px 0 16px; }
+  .mod-card {
+    display: flex; gap: 10px; align-items: flex-start;
+    padding: 10px 12px; border-radius: 8px; border: 1px solid #E2E8F0;
+    background: #FAFBFC;
+  }
+  .mod-card.done { border-left: 3px solid #059669; }
+  .mod-card.pending { border-left: 3px solid #2563EB; }
+  .mod-num {
+    min-width: 28px; height: 28px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; font-weight: 800; color: #FFF; flex-shrink: 0;
+  }
+  .mod-num.green { background: #059669; }
+  .mod-num.blue { background: #2563EB; }
+  .mod-name { font-size: 0.8rem; font-weight: 700; color: #0F172A; line-height: 1.3; }
+  .mod-desc { font-size: 0.7rem; color: #64748B; margin-top: 1px; }
+  .mod-status { font-size: 0.65rem; font-weight: 700; margin-top: 3px; }
+  .mod-status.done { color: #059669; }
+  .mod-status.pending { color: #2563EB; }
+
+  @media print {
+    .module-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+  }
+
+  /* Footer */
+  .report-footer {
+    text-align: center; padding: 20px 0; margin-top: 30px;
+    border-top: 2px solid #E2E8F0; font-size: 0.78rem; color: #94A3B8;
+  }
+
+  /* Print button */
+  .print-btn {
+    position: fixed; bottom: 30px; right: 30px;
+    background: linear-gradient(135deg, #2563EB, #1D4ED8); color: #FFF;
+    border: none; padding: 14px 24px; border-radius: 12px; font-size: 0.9rem;
+    font-weight: 700; cursor: pointer; box-shadow: 0 8px 24px rgba(37,99,235,0.3);
+    display: flex; align-items: center; gap: 8px; font-family: inherit;
+  }
+  .print-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(37,99,235,0.4); }
+</style>
+</head>
+<body>
+
+<!-- PRINT BUTTON -->
+<button class="print-btn no-print" onclick="window.print()">📄 Save as PDF (Ctrl+P)</button>
+
+<!-- HEADER -->
+<div class="report-header">
+  <div class="logo">🏢</div>
+  <h1>Enterprise IT & Corporate Facilities Service Portal</h1>
+  <h2>Project Progress Report — 12 Week Development Plan</h2>
+  <div class="report-meta">
+    <span>📅 Date: 03 August 2026</span>
+    <span>👥 Team: 2 Members</span>
+    <span>📊 Status: 42% Complete</span>
+  </div>
+</div>
+
+<!-- SECTION 1: TEAM -->
+<div class="section">
+  <span class="section-num">SECTION 1</span>
+  <h2>Team Composition</h2>
+  <table>
+    <thead>
+      <tr><th>Role</th><th>Name</th><th>Responsibilities</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td style="font-weight:700;">Developer & Project Coordinator</td>
+        <td style="font-weight:700; color:#2563EB;">You</td>
+        <td>Frontend development, backend integration, AI microservice, system architecture, testing</td>
+      </tr>
+      <tr>
+        <td style="font-weight:700;">Developer & QA Analyst</td>
+        <td style="font-weight:700; color:#2563EB;">Saraswathi</td>
+        <td>UI/UX implementation, authentication flow, SLA logic, service desk engine, quality assurance</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 2: OVERVIEW -->
+<div class="section">
+  <span class="section-num">SECTION 2</span>
+  <h2>Project Overview</h2>
+  <p><strong>What is this project?</strong><br>
+  The Enterprise IT & Corporate Facilities Service Portal is an AI-powered web application that serves as a unified service desk for managing IT support requests, facility maintenance, and emergency operations across an enterprise organization.</p>
+
+  <p><strong>Problem Statement:</strong></p>
+  <ul style="font-size:0.85rem; color:#334155; padding-left:20px; margin-bottom:12px;">
+    <li>Employees waste time navigating multiple systems to report IT issues or facility problems</li>
+    <li>Technicians lack a filtered, prioritized work queue with SLA visibility</li>
+    <li>Admins have no real-time visibility into ticket volumes and vendor performance</li>
+    <li>Emergency incidents require manual phone calls and emails with no automation</li>
+  </ul>
+
+  <p><strong>Our Solution:</strong> A single-portal platform where employees submit issues in plain English, AI automatically classifies and routes tickets, technicians receive domain-filtered queues with live SLA timers, and emergency SOS triggers real phone calls with automated admin alerts.</p>
+</div>
+
+<!-- SECTION 3: TECH STACK -->
+<div class="section">
+  <span class="section-num">SECTION 3</span>
+  <h2>Technology Stack</h2>
+  <table>
+    <thead>
+      <tr><th>Layer</th><th>Technology</th><th>Purpose</th></tr>
+    </thead>
+    <tbody>
+      <tr><td style="font-weight:700;">Frontend</td><td>HTML5, CSS3, Vanilla JavaScript</td><td>Core UI structure, styling, and logic</td></tr>
+      <tr><td style="font-weight:700;">Design</td><td>Custom CSS + Glassmorphism</td><td>Premium enterprise aesthetics</td></tr>
+      <tr><td style="font-weight:700;">Typography</td><td>Google Fonts (Plus Jakarta Sans)</td><td>Professional readability</td></tr>
+      <tr><td style="font-weight:700;">Icons</td><td>Font Awesome 6.5</td><td>500+ scalable vector icons</td></tr>
+      <tr><td style="font-weight:700;">Auth API</td><td>FormSubmit.co REST API</td><td>Real email-based 2FA OTP delivery</td></tr>
+      <tr><td style="font-weight:700;">Telephony</td><td>tel: URI Protocol</td><td>Native device dialer for SOS calls</td></tr>
+      <tr><td style="font-weight:700;">AI Backend</td><td>Python FastAPI + Uvicorn</td><td>REST API server for AI inference</td></tr>
+      <tr><td style="font-weight:700;">AI Models</td><td>Hugging Face Transformers</td><td>DistilBERT + RoBERTa NLP models</td></tr>
+      <tr><td style="font-weight:700;">Database</td><td>PostgreSQL</td><td>Permanent server-side data storage</td></tr>
+      <tr><td style="font-weight:700;">ORM</td><td>SQLAlchemy (Python)</td><td>Python ↔ PostgreSQL data bridge</td></tr>
+      <tr><td style="font-weight:700;">Persistence</td><td>Browser localStorage</td><td>Session & notification state</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 4: ALL 12 MODULES -->
+<div class="section page-break">
+  <span class="section-num">SECTION 4</span>
+  <h2>Application Modules Overview (12 Modules)</h2>
+  <p>The portal is built across <strong>12 independent modules</strong>, each developed in one week (5 working days). Together they form a comprehensive enterprise IT operations platform.</p>
+
+  <div class="module-grid">
+    <!-- M1 -->
+    <div class="mod-card done">
+      <div class="mod-num green">M1</div>
+      <div>
+        <div class="mod-name">Core UI & Design System</div>
+        <div class="mod-desc">Glassmorphism components, responsive grids, animations</div>
+        <div class="mod-status done">✅ Week 1 — Complete</div>
+      </div>
+    </div>
+    <!-- M2 -->
+    <div class="mod-card done">
+      <div class="mod-num green">M2</div>
+      <div>
+        <div class="mod-name">Authentication & 2FA Security</div>
+        <div class="mod-desc">Multi-role login, real email OTP, session persistence</div>
+        <div class="mod-status done">✅ Week 2 — Complete</div>
+      </div>
+    </div>
+    <!-- M3 -->
+    <div class="mod-card done">
+      <div class="mod-num green">M3</div>
+      <div>
+        <div class="mod-name">Service Desk & Ticketing Engine</div>
+        <div class="mod-desc">Ticket creation, domain queues, live SLA countdown</div>
+        <div class="mod-status done">✅ Week 3 — Complete</div>
+      </div>
+    </div>
+    <!-- M4 -->
+    <div class="mod-card done">
+      <div class="mod-num green">M4</div>
+      <div>
+        <div class="mod-name">Emergency SOS & Telephony</div>
+        <div class="mod-desc">Real phone call trigger, automated admin email alerts</div>
+        <div class="mod-status done">✅ Week 4 — Complete</div>
+      </div>
+    </div>
+    <!-- M5 -->
+    <div class="mod-card done">
+      <div class="mod-num green">M5</div>
+      <div>
+        <div class="mod-name">AI NLP Microservice (Hugging Face)</div>
+        <div class="mod-desc">DistilBERT category + RoBERTa sentiment classification</div>
+        <div class="mod-status done">✅ Week 5 — Complete</div>
+      </div>
+    </div>
+    <!-- M6 -->
+    <div class="mod-card pending">
+      <div class="mod-num blue">M6</div>
+      <div>
+        <div class="mod-name">Knowledge Base & Self-Service</div>
+        <div class="mod-desc">Searchable article library, ticket deflection suggestions</div>
+        <div class="mod-status pending">⬜ Week 6 — Pending</div>
+      </div>
+    </div>
+    <!-- M7 -->
+    <div class="mod-card pending">
+      <div class="mod-num blue">M7</div>
+      <div>
+        <div class="mod-name">IT Asset Management (ITAM)</div>
+        <div class="mod-desc">Device inventory, lifecycle tracking, asset-ticket linking</div>
+        <div class="mod-status pending">⬜ Week 7 — Pending</div>
+      </div>
+    </div>
+    <!-- M8 -->
+    <div class="mod-card pending">
+      <div class="mod-num blue">M8</div>
+      <div>
+        <div class="mod-name">Major Incident Management</div>
+        <div class="mod-desc">War room, batch resolution, incident timeline</div>
+        <div class="mod-status pending">⬜ Week 8 — Pending</div>
+      </div>
+    </div>
+    <!-- M9 -->
+    <div class="mod-card pending">
+      <div class="mod-num blue">M9</div>
+      <div>
+        <div class="mod-name">SLA Analytics & Reporting</div>
+        <div class="mod-desc">Visual charts, MTTR tracking, vendor compliance</div>
+        <div class="mod-status pending">⬜ Week 9 — Pending</div>
+      </div>
+    </div>
+    <!-- M10 -->
+    <div class="mod-card pending">
+      <div class="mod-num blue">M10</div>
+      <div>
+        <div class="mod-name">Change Management & Approvals</div>
+        <div class="mod-desc">Change requests, admin approval queue, risk classification</div>
+        <div class="mod-status pending">⬜ Week 10 — Pending</div>
+      </div>
+    </div>
+    <!-- M11 -->
+    <div class="mod-card pending">
+      <div class="mod-num blue">M11</div>
+      <div>
+        <div class="mod-name">Employee Self-Service Enhancements</div>
+        <div class="mod-desc">In-ticket chat, CSAT surveys, profile page, quick actions</div>
+        <div class="mod-status pending">⬜ Week 11 — Pending</div>
+      </div>
+    </div>
+    <!-- M12 -->
+    <div class="mod-card pending">
+      <div class="mod-num blue">M12</div>
+      <div>
+        <div class="mod-name">Themes, Audit Logs & UAT</div>
+        <div class="mod-desc">Dark/Light mode, security audit trail, campus floor map</div>
+        <div class="mod-status pending">⬜ Week 12 — Pending</div>
+      </div>
+    </div>
+  </div>
+
+  <table>
+    <thead><tr><th>Summary</th><th>Count</th></tr></thead>
+    <tbody>
+      <tr><td style="font-weight:700;">Total Modules</td><td style="font-weight:800; color:#0F172A;">12</td></tr>
+      <tr><td>✅ Completed Modules</td><td style="color:#059669; font-weight:700;">5</td></tr>
+      <tr><td>⬜ Pending Modules</td><td style="color:#2563EB; font-weight:700;">7</td></tr>
+      <tr><td>Total Working Days</td><td>60 (12 weeks × 5 days)</td></tr>
+      <tr><td>Team Size</td><td>2 Members (You & Saraswathi)</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 5: WEEKLY BREAKDOWN -->
+<div class="section page-break">
+  <span class="section-num">SECTION 5</span>
+  <h2>Weekly Progress Breakdown (Weeks 1–5)</h2>
+
+  <!-- WEEK 1 -->
+  <div class="week-card done">
+    <span class="week-status complete">✅ COMPLETE</span>
+    <h3>WEEK 1 — Core Architecture & Design System</h3>
+    <div class="subtitle">Duration: 5 Working Days</div>
+    <ul>
+      <li>Complete project folder structure with HTML, CSS, JS separation</li>
+      <li><strong>CSS Design Token System</strong> — 40+ variables for colors, shadows, borders ensuring visual consistency</li>
+      <li><strong>Glassmorphism Component Library</strong> — Reusable glass-panel, button, badge, form classes with blur effects</li>
+      <li><strong>Responsive Navigation Bar</strong> — Sticky header with logo, search, notifications, settings, user avatar</li>
+      <li><strong>Grid Layout System</strong> — 2-column and 4-column responsive grids with mobile collapse</li>
+      <li><strong>Animation System</strong> — Fade-in entrance animations for smooth view transitions</li>
+    </ul>
+    <div class="highlight">💡 Technical Highlight: CSS custom properties enable changing one color value to update the entire application — critical for the dark mode feature in Week 12.</div>
+  </div>
+
+  <!-- WEEK 2 -->
+  <div class="week-card done">
+    <span class="week-status complete">✅ COMPLETE</span>
+    <h3>WEEK 2 — Multi-Role Authentication & 2FA Security</h3>
+    <div class="subtitle">Duration: 5 Working Days</div>
+    <ul>
+      <li><strong>User Database</strong> with 4 accounts mapped to real email addresses across 3 roles (Admin, Employee, Technician)</li>
+      <li><strong>Login Screen</strong> — Professional form with email/password fields and 4 quick-fill demo pills</li>
+      <li><strong>Real 2FA OTP via Email</strong> — 6-digit code sent to actual Gmail inbox using FormSubmit.co API</li>
+      <li><strong>OTP Verification Screen</strong> — 6-box animated input with auto-focus advancement</li>
+      <li><strong>Session Persistence</strong> — localStorage session so page refresh doesn't force re-login</li>
+      <li><strong>Brute-Force Protection</strong> — Account locked for 15 minutes after 5 failed attempts</li>
+    </ul>
+    <div class="highlight">💡 Technical Highlight: OTP is delivered to a real Gmail inbox — not simulated. This is a production-grade 2FA flow.</div>
+  </div>
+
+  <!-- WEEK 3 -->
+  <div class="week-card done">
+    <span class="week-status complete">✅ COMPLETE</span>
+    <h3>WEEK 3 — Service Desk Request Engine & SLA Timers</h3>
+    <div class="subtitle">Duration: 5 Working Days</div>
+    <ul>
+      <li><strong>Service Catalog Cards</strong> — 4 clickable quick-action cards (Hardware, Software, Facilities, Network)</li>
+      <li><strong>Ticket Creation Form</strong> — Title, Location, and Description fields with validation</li>
+      <li><strong>Ticket Data Model</strong> — Unique code, priority (P1–P4), status, SLA timer, vendor, domain tag</li>
+      <li><strong>Domain-Filtered Tech Queue</strong> — Hardware techs see only hardware tickets, software techs see only software</li>
+      <li><strong>Live SLA Countdown Timers</strong> — Real-time HH:MM:SS countdown (P1=2hr, P2=8hr, P3=24hr)</li>
+      <li><strong>Status Management</strong> — Technician dropdown: Submitted → In Progress → Resolved</li>
+    </ul>
+    <div class="highlight">💡 Technical Highlight: SLA timers run at 1-second precision using setInterval(), decrementing each ticket's counter in real-time.</div>
+  </div>
+
+  <!-- WEEK 4 -->
+  <div class="week-card done page-break">
+    <span class="week-status complete">✅ COMPLETE</span>
+    <h3>WEEK 4 — Cloud Telephony & Emergency SOS Hotline</h3>
+    <div class="subtitle">Duration: 5 Working Days</div>
+    <ul>
+      <li><strong>Settings Modal</strong> — Security & emergency panel with editable SOS phone number (default: +91 9944467393)</li>
+      <li><strong>SOS Call Trigger</strong> — Opens device dialer via tel: protocol for real voice call</li>
+      <li><strong>Admin Email Alert</strong> — Simultaneously emails samantrose7@gmail.com with caller details</li>
+      <li><strong>2FA Preference Setting</strong> — Choose between Email OTP or Emergency Voice Telephony</li>
+      <li><strong>Notification Integration</strong> — SOS triggers create red EMERGENCY notifications</li>
+    </ul>
+    <div class="highlight">💡 Technical Highlight: Dual-channel alert — one button triggers both a phone call AND admin email simultaneously.</div>
+  </div>
+
+  <!-- WEEK 5 -->
+  <div class="week-card done">
+    <span class="week-status complete">✅ COMPLETE</span>
+    <h3>WEEK 5 — Python FastAPI AI Microservice (Hugging Face NLP)</h3>
+    <div class="subtitle">Duration: 5 Working Days</div>
+    <ul>
+      <li><strong>Live AI Preview Panel</strong> — Real-time inference showing Category, Sentiment/Priority, and Auto-Routed Team</li>
+      <li><strong>Frontend Heuristic Classifier</strong> — Keyword-based NLP rules running instantly in browser</li>
+      <li><strong>Python FastAPI Backend</strong> — REST API at /analyze using Hugging Face models</li>
+      <li><strong>DistilBERT</strong> — Category classification (Hardware, Software, Facilities, Network)</li>
+      <li><strong>RoBERTa</strong> — Sentiment & urgency analysis (P1 Critical → P4 Low)</li>
+      <li><strong>Intelligent Fallback</strong> — Seamless switch to heuristic rules when Python server is unavailable</li>
+    </ul>
+    <div class="highlight">💡 Technical Highlight: AI triage happens live as the user types — every keystroke re-evaluates the description for instant classification feedback.</div>
+  </div>
+</div>
+
+<!-- SECTION 6: METRICS -->
+<div class="section">
+  <span class="section-num">SECTION 6</span>
+  <h2>Key Metrics (After 5 Weeks)</h2>
+  <div class="metrics-grid">
+    <div class="metric-box"><div class="val">25</div><div class="label">Working Days Done</div></div>
+    <div class="metric-box"><div class="val">5</div><div class="label">Modules Delivered</div></div>
+    <div class="metric-box"><div class="val">1,800+</div><div class="label">Lines of Code</div></div>
+    <div class="metric-box"><div class="val">3</div><div class="label">User Roles</div></div>
+    <div class="metric-box"><div class="val">2</div><div class="label">AI Models Integrated</div></div>
+    <div class="metric-box"><div class="val">42%</div><div class="label">Overall Progress</div></div>
+  </div>
+
+  <table>
+    <thead><tr><th>Capability</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr><td>Real Email OTP Delivery (Gmail)</td><td style="color:#059669; font-weight:700;">✅ Working</td></tr>
+      <tr><td>Real Phone Call Capability (Device Dialer)</td><td style="color:#059669; font-weight:700;">✅ Working</td></tr>
+      <tr><td>AI-Powered Ticket Classification</td><td style="color:#059669; font-weight:700;">✅ Working</td></tr>
+      <tr><td>Live SLA Countdown Timers</td><td style="color:#059669; font-weight:700;">✅ Working</td></tr>
+      <tr><td>Multi-Role Authentication (Admin/Employee/Tech)</td><td style="color:#059669; font-weight:700;">✅ Working</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 7: ROADMAP -->
+<div class="section">
+  <span class="section-num">SECTION 7</span>
+  <h2>Upcoming Roadmap (Weeks 6–12)</h2>
+
+  <div class="roadmap-item">
+    <div class="roadmap-week">Week 6</div>
+    <div class="roadmap-text">
+      <div class="rt-title">Knowledge Base & Self-Service Deflection</div>
+      <div class="rt-desc">Searchable article library + auto-suggest solutions before ticket submission</div>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <div class="roadmap-week">Week 7</div>
+    <div class="roadmap-text">
+      <div class="rt-title">IT Asset Management (ITAM) Registry</div>
+      <div class="rt-desc">Device inventory, lifecycle tracking, warranty alerts, asset-ticket linking</div>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <div class="roadmap-week">Week 8</div>
+    <div class="roadmap-text">
+      <div class="rt-title">Major Incident Management & War Room</div>
+      <div class="rt-desc">Batch resolution, incident timeline, stakeholder auto-notifications</div>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <div class="roadmap-week">Week 9</div>
+    <div class="roadmap-text">
+      <div class="rt-title">SLA Analytics & Executive Reporting</div>
+      <div class="rt-desc">Visual charts, MTTR tracking, vendor compliance, trend analysis</div>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <div class="roadmap-week">Week 10</div>
+    <div class="roadmap-text">
+      <div class="rt-title">Change Management & Approval Workflows</div>
+      <div class="rt-desc">Change requests, admin approval queue, risk classification, change calendar</div>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <div class="roadmap-week">Week 11</div>
+    <div class="roadmap-text">
+      <div class="rt-title">Employee Self-Service Enhancements</div>
+      <div class="rt-desc">In-ticket chat, satisfaction surveys, employee profile, quick actions</div>
+    </div>
+  </div>
+  <div class="roadmap-item">
+    <div class="roadmap-week">Week 12</div>
+    <div class="roadmap-text">
+      <div class="rt-title">Final Polish, Themes & UAT</div>
+      <div class="rt-desc">Dark/Light mode, security audit logs, campus floor map, final testing</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: CONCLUSION -->
+<div class="section">
+  <span class="section-num">SECTION 8</span>
+  <h2>Conclusion</h2>
+  <p>In the first 5 weeks, our 2-person team has built a <strong>fully functional, AI-powered enterprise service portal</strong> with real email-based 2FA authentication, AI-driven ticket classification using Hugging Face NLP models, live SLA countdown monitoring, emergency telephony with automated admin alerts, and a premium glassmorphism UI design.</p>
+  <p>The foundation is solid and production-grade. The remaining 7 weeks will add advanced modules (ITAM, Analytics, Change Management) and final polish (Dark Mode, Audit Logs) to deliver a comprehensive enterprise IT operations platform.</p>
+</div>
+
+<!-- FOOTER -->
+<div class="report-footer">
+  <strong>Enterprise IT & Corporate Facilities Service Portal</strong><br>
+  Prepared by: Development Team — You & Saraswathi (2 Members)<br>
+  Project Timeline: 12 Weeks (60 Working Days) | Current Status: Week 5 Complete — 42% Overall Progress<br>
+  Report Date: 03 August 2026
+</div>
+
+</body>
+</html>
