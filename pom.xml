@@ -14,7 +14,7 @@
     <groupId>com.enterprise.portal</groupId>
     <artifactId>enterprise-service-portal</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>Enterprise Service Portal</name>
     <description>AI-Powered Enterprise IT and Corporate Facilities Service Portal Backend (Spring Boot 3 + PostgreSQL)</description>
@@ -32,6 +32,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Provided Tomcat for Eclipse WTP / External Server -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-tomcat</artifactId>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Spring Boot Starter Data JPA (ORM, Repositories, Hibernate) -->
