@@ -139,12 +139,21 @@ let selectedCsatRating = 0;
 
 // ==================== INIT ====================
 document.addEventListener('DOMContentLoaded', () => {
-  localStorage.removeItem('portal_session');
   loadSavedNotifications();
   loadThemePreference();
   renderEmployeeTickets();
   startSlaTimers();
   populateAssetDropdown();
+
+  const savedSession = localStorage.getItem('portal_session');
+  if (savedSession) {
+    try {
+      currentUser = JSON.parse(savedSession);
+      restoreUserDashboard(currentUser);
+    } catch (e) {
+      localStorage.removeItem('portal_session');
+    }
+  }
 });
 
 // ==================== NOTIFICATIONS (localStorage) ====================
